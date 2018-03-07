@@ -1,0 +1,27 @@
+﻿CREATE TABLE 'users' (
+'steam_id' VARCHAR(25) NOT NULL,
+'username' VARCHAR(35) NOT NULL, 
+PRIMARY KEY ('steam_id', 'username') 
+);
+
+CREATE TABLE 'activity' ( 
+'steam_id' VARCHAR(25) NOT NULL,
+'username' VARCHAR(35) NOT NULL,
+'login' DATETIME NOT NULL,
+'logout' DATETIME NOT NULL,
+'state' VARCHAR(20) NOT NULL,
+'has_session_request' BOOLEAN NOT NULL,
+'has_connected' BOOLEAN NOT NULL,
+'has_validated' BOOLEAN NOT NULL,
+'has_world_request' BOOLEAN NOT NULL,
+PRIMARY KEY ('steam_id', 'username', 'login', 'logout'),
+FOREIGN KEY ('steam_id', 'username') REFERENCES 'users' ('steam_id', 'username')
+);
+
+CREATE TABLE 'deaths' (
+'steam_id' VARCHAR(25) NOT NULL,
+'username' VARCHAR(35) NOT NULL,
+'time_of_death' DATETIME NOT NULL,
+FOREIGN KEY ('steam_id', 'username') REFERENCES 'users' ('steam_id', 'username')
+);
+
